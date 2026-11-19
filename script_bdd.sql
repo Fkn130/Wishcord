@@ -1,7 +1,7 @@
 CREATE TABLE Utilisateur(
    id_utili INT,
    identifiant VARCHAR(50),
-   mot_de_passe_hash VARCHAR(256),
+   mdp_hash VARCHAR(256),
    nom VARCHAR(50),
    prenom VARCHAR(50),
    date_naissance DATE,
