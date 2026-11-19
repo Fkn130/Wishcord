@@ -1,13 +1,4 @@
-<?php
-    include_once "../../element/header.php";
-?>
-<h1>Connexion</h1>
-<?php
 
-    include_once "../../element/nav.php";
-?>
-<br>
-<br>
 <body class="mon-element">
     <form method="post" action="connexion.php" class = "login">
         <label for="email">Votre e-mail :</label>
