@@ -74,8 +74,8 @@ $messages_prives = file_exists($fichier_mp) ? json_decode(file_get_contents($fic
         <br>
         <br>
 
-        <!-- Formulaire d'envoi de réponse des messages privés -->
-        <form action="repon_message.php" method="POST">
+        <!-- Formulaire de réponse des messages privés -->
+        <form action="repon_message_priv.php" method="POST">
         <label for="destinataire">Envoyer à :</label>
         <select name="destinataire" id="destinataire" required>
             <option value="">-- Choisir un utilisateur --</option>
