@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-// 1. Vérifier si l'utilisateur est bien connecté
+/* 1. Vérifier si l'utilisateur est bien connecté
 if (!isset($_SESSION['id_utili'])) {
     header('Location: ../Authentification/connexion.php');
     exit();
-}
+}*/
 
 // 2. Vérifier si le lien/invitation est fourni dans l'URL (ex: salon.php?token=xyz)
 $token = $_GET['token'] ?? null;
@@ -47,7 +47,7 @@ if (file_exists($fichier)) {
     <br><br>
 
     <!-- Formulaire d'envoi -->
-    <form action="send_message.php" method="POST">
+    <form action="envoie_message.php" method="POST">
         <label><?php echo htmlspecialchars($pseudo_connecte); ?> :</label>
         <input type="text" name="message" placeholder="Tapez votre message ici..." required />
         <button type="submit">Envoyer</button>
