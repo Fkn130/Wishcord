@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 1. Vérifier si l'utilisateur est bien connecté
+// 1. Vérifier si l'utilisateur est connecter ou non 
 if (!isset($_SESSION['id_utili'])) {
     header('Location: ../Authentification/connexion.php');
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_utili'])) {
 
 $pseudo_connecte = $_SESSION['pseudo'] ?? '';
 
-// 2. Charger la liste des utilisateurs pour pouvoir choisir le destinataire
+// 2. Charger la liste des utilisateurs pour pouvoir choisir le destinataire a qui envoyé le message
 $fichier_users = '../Authentification/Utilisateurs.json';
 $utilisateurs = file_exists($fichier_users) ? json_decode(file_get_contents($fichier_users), true) : [];
 
