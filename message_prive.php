@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-// 1. Vérifier si l'utilisateur est connecter ou non 
+/* 1. Vérifier si l'utilisateur est connecter ou non 
 if (!isset($_SESSION['id_utili'])) {
     header('Location: ../Authentification/connexion.php');
     exit();
-}
+}*/
 
 $pseudo_connecte = $_SESSION['pseudo'] ?? '';
 
@@ -13,7 +13,7 @@ $pseudo_connecte = $_SESSION['pseudo'] ?? '';
 $fichier_users = '../Authentification/Utilisateurs.json';
 $utilisateurs = file_exists($fichier_users) ? json_decode(file_get_contents($fichier_users), true) : [];
 
-// 3. Charger les messages privés (depuis un fichier JSON ou votre BDD)
+// 3. Charger les messages privés
 $fichier_mp = 'log_mp.json';
 $messages_prives = file_exists($fichier_mp) ? json_decode(file_get_contents($fichier_mp), true) : [];
 ?>
@@ -44,10 +44,12 @@ $messages_prives = file_exists($fichier_mp) ? json_decode(file_get_contents($fic
         <?php endforeach; ?>
     </div>
 
-    <br><hr><br>
+    <br>
+    <hr>
+    <br>
 
     <!-- Formulaire d'envoi de message privé -->
-    <form action="send_mp.php" method="POST">
+    <form action="envoie_message.php" method="POST">
         <label for="destinataire">Envoyer à :</label>
         <select name="destinataire" id="destinataire" required>
             <option value="">-- Choisir un utilisateur --</option>
@@ -59,12 +61,38 @@ $messages_prives = file_exists($fichier_mp) ? json_decode(file_get_contents($fic
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
-
-        <br><br>
+        <br>
+        <br>
 
         <input type="text" name="message" placeholder="Votre message privé..." required />
+        <br>
+        <button type="submit">Envoyer un message</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- Formulaire d'envoi de réponse des messages privés -->
+        <form action="repon_message.php" method="POST">
+        <label for="destinataire">Envoyer à :</label>
+        <select name="destinataire" id="destinataire" required>
+            <option value="">-- Choisir un utilisateur --</option>
+            <?php foreach ($utilisateurs as $user): ?>
+                <?php if ($user['identifiant'] !== $pseudo_connecte): ?>
+                    <option value="<?php echo htmlspecialchars($user['identifiant']); ?>">
+                        <?php echo htmlspecialchars($user['identifiant']); ?>
+                    </option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <br>
+        <br>
+
+        <input type="text" name="message" placeholder="Votre réponse ..." required />
+        <br>
         <button type="submit">Envoyer un message</button>
     </form>
-
 </body>
 </html>
